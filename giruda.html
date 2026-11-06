@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>기루다 — HotBlue</title>
+<meta name="theme-color" content="#06080f">
+<link rel="icon" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="기루다 — HotBlue">
+<meta property="og:description" content="한국식 마이티 카드게임. AI 대전부터 실시간 온라인 멀티플레이까지.">
+<meta property="og:url" content="https://hotblue.kr/giruda.html">
+<meta property="og:image" content="https://hotblue.kr/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="기루다 — 한국식 마이티 카드게임. AI 대전부터 실시간 온라인 멀티플레이까지.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap">
+<style>
+  :root { color-scheme:dark;
+    --bg:#06080f; --bg-2:#090d17; --surface:#0d1420; --fg:#ecf2fb; --muted:#8a99b3; --line:#1b2740; --line-strong:#2b3c5c;
+    --cyan:#6ad6ff; --blue:#3b6ff0; --violet:#7c4dde; --accent:#7aa7ff;
+    --c-game:#6ad6ff; --c-prod:#7aa7ff; --c-ai:#b49bf0; --cat:var(--c-game);
+    --fonts-display:"Outfit",system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif; --fonts-body:"Hanken Grotesk",system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif; --fonts-mono:ui-monospace,Menlo,monospace; }
+  * { box-sizing:border-box; } html,body { margin:0; }
+  body { background:var(--bg); color:var(--fg); font-family:var(--fonts-body); line-height:1.6; -webkit-font-smoothing:antialiased; position:relative; overflow-x:hidden; }
+  body::before { content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
+    background:
+      radial-gradient(40% 26% at 14% 0%, color-mix(in srgb, var(--cat), transparent 80%), transparent 62%),
+      radial-gradient(42% 30% at 88% -2%, color-mix(in srgb, var(--violet), transparent 80%), transparent 64%),
+      radial-gradient(60% 40% at 52% -12%, color-mix(in srgb, var(--blue), transparent 78%), transparent 66%),
+      linear-gradient(180deg, var(--bg-2), var(--bg) 46%); }
+  body::after { content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"); }
+  a { color:inherit; }
+  .wrap { max-width:1080px; margin:0 auto; padding-inline:20px; }
+  .p0{stop-color:var(--cyan);} .p1{stop-color:var(--blue);} .p2{stop-color:var(--violet);} .pc0{stop-color:#f0f6ff;} .pc1{stop-color:var(--cyan);}
+
+  header.top { position:sticky; top:env(safe-area-inset-top,0px); z-index:20; background:color-mix(in srgb, var(--bg), transparent 28%); backdrop-filter:blur(14px); border-bottom:1px solid color-mix(in srgb, var(--line), transparent 30%); }
+  .top-inner { display:flex; align-items:center; gap:14px; padding-block:13px; }
+  .brand { display:flex; align-items:center; gap:9px; margin-right:auto; text-decoration:none; }
+  .brand svg { width:26px; height:30px; filter:drop-shadow(0 2px 8px color-mix(in srgb, var(--blue), transparent 55%)); }
+  .brand b { font-family:var(--fonts-display); font-weight:800; font-size:20px; letter-spacing:-0.02em; color:var(--fg); }
+  .nav { display:flex; gap:4px; }
+  .nav a { font-size:14px; color:var(--muted); text-decoration:none; padding:7px 13px; border-radius:999px; transition:color .15s, background .15s; }
+  .nav a:hover { color:var(--fg); background:color-mix(in srgb, var(--fg), transparent 92%); }
+
+  .back { display:inline-flex; align-items:center; gap:7px; color:var(--muted); text-decoration:none; font-size:14px; font-weight:600; margin-top:26px; transition:color .15s; }
+  .back:hover { color:var(--fg); }
+
+  .app-hero { display:grid; grid-template-columns:auto 1fr; gap:clamp(20px,4vw,36px); align-items:center; padding-block:clamp(22px,4vw,34px) clamp(30px,5vw,50px); }
+  .ah-icon { position:relative; flex:none; }
+  .ah-icon::after { content:""; position:absolute; inset:-30%; z-index:-1; background:radial-gradient(50% 50% at 50% 50%, color-mix(in srgb, var(--cat), transparent 55%), transparent 70%); filter:blur(26px); }
+  .ah-icon img { width:clamp(88px,14vw,122px); height:auto; border-radius:27px; box-shadow:0 18px 44px rgba(0,0,0,.5); display:block; }
+  .ah-icon.g-genosis img { background:#141022; }
+  .cat { font-family:var(--fonts-display); font-weight:600; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--cat); background:color-mix(in srgb, var(--cat), transparent 86%); border:1px solid color-mix(in srgb, var(--cat), transparent 72%); border-radius:999px; padding:4px 12px; white-space:nowrap; }
+  .ah-text h1 { font-family:var(--fonts-display); font-weight:800; font-size:clamp(34px,6vw,56px); letter-spacing:-0.03em; line-height:1.02; margin:12px 0 0; }
+  .ah-text h1 small { font-family:var(--fonts-body); font-weight:500; font-size:clamp(15px,2vw,18px); color:var(--muted); margin-left:10px; letter-spacing:0; }
+  .ah-tag { font-family:var(--fonts-display); font-weight:600; font-size:clamp(16px,2.3vw,19px); color:color-mix(in srgb, var(--fg), transparent 14%); margin:10px 0 0; }
+  .ah-desc { color:var(--muted); font-size:15.5px; max-width:52ch; margin:12px 0 0; }
+  .meta { display:flex; flex-wrap:wrap; gap:7px; margin-top:16px; }
+  .chip { font-size:12px; color:var(--muted); background:color-mix(in srgb, var(--fg), transparent 93%); border:1px solid var(--line); border-radius:999px; padding:4px 11px; }
+  .links { display:flex; flex-wrap:wrap; gap:9px; margin-top:16px; }
+  .lnk { font-size:13.5px; font-weight:600; text-decoration:none; color:var(--fg); border:1px solid var(--line-strong); border-radius:11px; padding:10px 16px; display:inline-flex; align-items:center; gap:6px; transition:border-color .15s, color .15s, background .15s; }
+  .lnk:hover { border-color:var(--accent); color:var(--accent); background:color-mix(in srgb, var(--accent), transparent 92%); }
+  .lnk.solid { border-color:transparent; background:linear-gradient(100deg, var(--blue), var(--violet)); color:#fff; box-shadow:0 8px 26px color-mix(in srgb, var(--blue), transparent 66%); }
+  .lnk.solid:hover { filter:brightness(1.08); color:#fff; background:linear-gradient(100deg, var(--blue), var(--violet)); }
+  .lnk .ar { opacity:.5; }
+
+  .showcase { display:flex; flex-direction:column; gap:clamp(40px,7vw,86px); padding-bottom:clamp(20px,4vw,40px); }
+  .show { display:grid; grid-template-columns:1fr 1fr; gap:clamp(26px,5vw,62px); align-items:center; }
+  .show:nth-child(even) .show-media { order:2; }
+  @media (max-width:800px){ .show { grid-template-columns:1fr; gap:22px; } .show:nth-child(even) .show-media { order:0; } }
+
+  .stage { border-radius:22px; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;
+    border:1px solid color-mix(in srgb, var(--line), transparent 10%); box-shadow:0 34px 80px rgba(0,0,0,.5);
+    background:
+      radial-gradient(72% 64% at 50% 6%, color-mix(in srgb, var(--cat), transparent 64%), transparent 72%),
+      linear-gradient(158deg, color-mix(in srgb, var(--cyan), transparent 84%), color-mix(in srgb, var(--violet), transparent 88%)); }
+  .stage.portrait { aspect-ratio:1/1.08; }
+  .stage.portrait img { max-width:66%; max-height:100%; object-fit:contain; border-radius:16px; box-shadow:0 26px 54px rgba(0,0,0,.62); }
+
+  .show-num { font-family:var(--fonts-mono); font-size:12.5px; font-weight:600; color:var(--cat); letter-spacing:.06em; }
+  .show h3 { font-family:var(--fonts-display); font-weight:700; font-size:clamp(21px,3vw,27px); letter-spacing:-0.02em; margin:10px 0 0; }
+  .show p { color:var(--muted); font-size:15px; max-width:46ch; margin:10px 0 0; }
+  .show .mini { display:flex; flex-wrap:wrap; gap:7px; margin-top:14px; }
+
+  footer.site { border-top:1px solid var(--line); padding-block:30px 52px; margin-top:clamp(30px,6vw,60px); }
+  .foot-inner { display:flex; align-items:center; gap:14px 20px; flex-wrap:wrap; }
+  .foot-inner .brand b { font-size:16px; }
+  .foot-links { display:flex; gap:18px; margin-left:auto; flex-wrap:wrap; }
+  .foot-links a { color:var(--muted); font-size:14px; text-decoration:none; }
+  .foot-links a:hover { color:var(--accent); }
+  .copy { width:100%; color:color-mix(in srgb, var(--muted), transparent 25%); font-size:13px; margin-top:6px; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs>
+  <linearGradient id="gBody" x1="0.15" y1="0" x2="0.4" y2="1"><stop offset="0" class="p0"/><stop offset="0.5" class="p1"/><stop offset="1" class="p2"/></linearGradient>
+  <linearGradient id="gCore" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" class="pc0"/><stop offset="1" class="pc1"/></linearGradient>
+  <symbol id="mark" viewBox="0 0 100 100">
+    <path d="M50 10 C 68 34 78 48 78 63 C 78 80 65.9 92 50 92 C 34.1 92 22 80 22 63 C 22 48 32 34 50 10 Z" fill="url(#gBody)"/>
+    <path d="M50 44 C 57 52 60 57 60 64 C 60 72 55.5 78 50 78 C 44.5 78 40 72 40 64 C 40 58 43 54 47 48 C 48 53 48.5 52 50 44 Z" fill="url(#gCore)"/>
+  </symbol>
+</defs></svg>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="index.html"><svg viewBox="0 0 100 100" aria-label="HotBlue"><use href="#mark"/></svg><b>HotBlue</b></a>
+    <nav class="nav">
+      <a href="index.html#apps">앱</a>
+      <a href="https://github.com/hotbluehq" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <a class="back" href="index.html#apps">← 모든 앱</a>
+
+  <section class="app-hero">
+    <div class="ah-icon"><img src="assets/giruda.png" alt="기루다 앱 아이콘"></div>
+    <div class="ah-text">
+      <span class="cat">게임 · 카드</span>
+      <h1>기루다 <small>Giruda</small></h1>
+      <p class="ah-tag">한국식 마이티 카드게임</p>
+      <p class="ah-desc">5명이 비밀 파트너를 두고 겨루는 트릭테이킹 게임 마이티를, 혼자서도 친구들과도 즐길 수 있게 만들었어요. AI 대전·튜토리얼·업적·랭킹·챌린지까지 갖춘 본격 카드게임입니다.</p>
+      <div class="meta"><span class="chip">iOS · Android</span><span class="chip">온라인 멀티플레이</span><span class="chip">5개 언어</span><span class="chip">AI 대전</span><span class="chip">챌린지 모드</span></div>
+      <div class="links">
+        <a class="lnk solid" href="https://apps.apple.com/app/id6758698236" target="_blank" rel="noopener">App Store <span class="ar">↗</span></a>
+        <a class="lnk" href="https://play.google.com/store/apps/details?id=com.jakeppjk.mighty" target="_blank" rel="noopener">Google Play <span class="ar">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="showcase">
+
+    <article class="show">
+      <div class="show-media"><div class="stage portrait"><img src="assets/giruda-bidding.jpg" alt="기루다 비딩 화면"></div></div>
+      <div class="show-text">
+        <div class="show-num">01 — 비딩</div>
+        <h3>손패를 읽고 공약을 부른다</h3>
+        <p>어떤 무늬를 기루다로 할지, 몇 점을 약속할지 겨루는 비딩. 초보자를 위한 핸드 분석 툴팁을 켜면, 지금 패로 어떤 공약이 합리적인지 바로 짚어줘요.</p>
+        <div class="mini"><span class="chip">핸드 분석 가이드</span><span class="chip">리비드</span></div>
+      </div>
+    </article>
+
+    <article class="show">
+      <div class="show-media"><div class="stage portrait"><img src="assets/giruda-mighty.jpg" alt="기루다 플레이 화면"></div></div>
+      <div class="show-text">
+        <div class="show-num">02 — 플레이</div>
+        <h3>10트릭, 한 장 한 장의 수싸움</h3>
+        <p>마이티·조커·기루다가 얽히는 긴장감 있는 플레이. 주공과 숨은 프렌드가 밝혀지는 순간 판이 뒤집혀요. 상황별 안내 툴팁으로 규칙을 익히며 둘 수 있습니다.</p>
+        <div class="mini"><span class="chip">조커콜</span><span class="chip">프렌드 공개</span><span class="chip">실시간 점수</span></div>
+      </div>
+    </article>
+
+    <article class="show">
+      <div class="show-media"><div class="stage portrait"><img src="assets/giruda-online.jpg" alt="기루다 온라인 멀티플레이 화면"></div></div>
+      <div class="show-text">
+        <div class="show-num">03 — 온라인</div>
+        <h3>친구와 실시간 멀티플레이</h3>
+        <p>6자리 코드로 방을 만들고 친구를 초대하거나, 공개 방에 바로 입장. 나간 자리는 AI 봇이 메우고, 턴 타이머와 시리즈(3·5·7판)까지 — 끊김 없는 온라인 대전이에요.</p>
+        <div class="mini"><span class="chip">방 만들기 · 공개 방</span><span class="chip">친구 초대</span><span class="chip">AI 봇 대체</span></div>
+      </div>
+    </article>
+
+    <article class="show">
+      <div class="show-media"><div class="stage portrait"><img src="assets/giruda-ranking.jpg" alt="기루다 랭킹 화면"></div></div>
+      <div class="show-text">
+        <div class="show-num">04 — 성장</div>
+        <h3>업적 · 랭킹으로 길게 즐기기</h3>
+        <p>80여 개 업적, 최다승·연승·주공 승리 같은 카테고리별 랭킹, 프로필 칭호와 프레임. 플레이할수록 쌓이는 기록이 다음 판의 이유가 됩니다.</p>
+        <div class="mini"><span class="chip">업적</span><span class="chip">리더보드</span><span class="chip">칭호 · 프레임</span></div>
+      </div>
+    </article>
+
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap foot-inner">
+    <a class="brand" href="index.html"><svg viewBox="0 0 100 100" width="22" height="26" aria-hidden="true"><use href="#mark"/></svg><b>HotBlue</b></a>
+    <div class="foot-links">
+      <a href="index.html#apps">앱</a>
+      <a href="https://github.com/hotbluehq" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://hotblue.kr" target="_blank" rel="noopener">hotblue.kr</a>
+    </div>
+    <div class="copy">© 2026 HotBlue</div>
+  </div>
+</footer>
+</body></html>

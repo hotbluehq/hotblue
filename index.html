@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HotBlue</title>
+<meta name="description" content="HotBlue — 게임·생산성·AI 앱을 만드는 1인 소프트웨어 스튜디오">
+<meta name="theme-color" content="#06080f">
+<link rel="icon" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HotBlue">
+<meta property="og:description" content="게임·생산성·AI 앱을 만드는 1인 소프트웨어 스튜디오">
+<meta property="og:url" content="https://hotblue.kr">
+<meta property="og:image" content="https://hotblue.kr/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg:#06080f; --bg-2:#090d17; --surface:#0d1420; --surface-2:#0a111c;
+    --fg:#ecf2fb; --muted:#8a99b3; --line:#1b2740; --line-strong:#2b3c5c;
+    --cyan:#6ad6ff; --blue:#3b6ff0; --violet:#7c4dde; --accent:#7aa7ff;
+    --c-game:#6ad6ff; --c-prod:#7aa7ff; --c-ai:#b49bf0;
+    --fonts-display:"Outfit",system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    --fonts-body:"Hanken Grotesk",system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    --fonts-mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; }
+  body {
+    background:var(--bg); color:var(--fg); font-family:var(--fonts-body); line-height:1.6;
+    -webkit-font-smoothing:antialiased; position:relative; overflow-x:hidden;
+  }
+  body::before { content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
+    background:
+      radial-gradient(38% 26% at 16% 2%, color-mix(in srgb, var(--cyan), transparent 80%), transparent 62%),
+      radial-gradient(42% 30% at 85% -2%, color-mix(in srgb, var(--violet), transparent 76%), transparent 64%),
+      radial-gradient(60% 40% at 52% -12%, color-mix(in srgb, var(--blue), transparent 76%), transparent 66%),
+      linear-gradient(180deg, var(--bg-2), var(--bg) 46%); }
+  body::after { content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"); }
+  a { color:inherit; }
+  .wrap { max-width:1080px; margin:0 auto; padding-inline:20px; }
+  .p0{stop-color:var(--cyan);} .p1{stop-color:var(--blue);} .p2{stop-color:var(--violet);}
+  .pc0{stop-color:#f0f6ff;} .pc1{stop-color:var(--cyan);}
+
+  header.top { position:sticky; top:env(safe-area-inset-top,0px); z-index:20; background:color-mix(in srgb, var(--bg), transparent 28%); backdrop-filter:blur(14px); border-bottom:1px solid color-mix(in srgb, var(--line), transparent 30%); }
+  .top-inner { display:flex; align-items:center; gap:14px; padding-block:13px; }
+  .brand { display:flex; align-items:center; gap:9px; margin-right:auto; text-decoration:none; }
+  .brand svg { width:26px; height:30px; filter:drop-shadow(0 2px 8px color-mix(in srgb, var(--blue), transparent 55%)); }
+  .brand b { font-family:var(--fonts-display); font-weight:800; font-size:20px; letter-spacing:-0.02em; color:var(--fg); }
+  .nav { display:flex; gap:4px; }
+  .nav a { font-size:14px; color:var(--muted); text-decoration:none; padding:7px 13px; border-radius:999px; transition:color .15s, background .15s; }
+  .nav a:hover { color:var(--fg); background:color-mix(in srgb, var(--fg), transparent 92%); }
+
+  .hero { position:relative; text-align:center; padding-block:clamp(56px,10vw,112px) clamp(44px,8vw,80px); }
+  .hero .glow { position:absolute; left:50%; top:8%; width:min(760px,92%); height:420px; transform:translateX(-50%); z-index:0; pointer-events:none;
+    background:radial-gradient(50% 50% at 50% 50%, color-mix(in srgb, var(--blue), transparent 58%), transparent 70%); filter:blur(46px); opacity:.9; }
+  .hero > *:not(.glow) { position:relative; z-index:1; }
+  .hero .mark { width:clamp(64px,12vw,88px); height:auto; filter:drop-shadow(0 12px 34px color-mix(in srgb, var(--cyan), transparent 55%)); }
+  .eyebrow { font-family:var(--fonts-display); font-weight:600; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:color-mix(in srgb, var(--cyan), var(--fg) 25%); margin:18px 0 8px; }
+  .wordmark { font-family:var(--fonts-display); font-weight:900; font-size:clamp(58px,15vw,128px); letter-spacing:-0.05em; line-height:.95; margin:0;
+    background:linear-gradient(104deg, var(--cyan), var(--blue) 46%, var(--violet)); -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter:drop-shadow(0 8px 44px color-mix(in srgb, var(--blue), transparent 62%)); }
+  .hero p.lead { font-family:var(--fonts-display); font-weight:600; font-size:clamp(18px,2.7vw,23px); color:var(--fg); max-width:22ch; margin:22px auto 8px; text-wrap:balance; letter-spacing:-0.01em; }
+  .hero p.sub { color:var(--muted); max-width:42ch; margin:0 auto; font-size:clamp(14.5px,2vw,16px); }
+  .hero .cta { display:inline-flex; gap:11px; margin-top:28px; flex-wrap:wrap; justify-content:center; }
+  .btn { font-family:var(--fonts-display); font-weight:600; font-size:14.5px; text-decoration:none; padding:12px 22px; border-radius:999px; border:1px solid transparent; transition:transform .15s, filter .15s, border-color .15s; }
+  .btn.primary { background:linear-gradient(100deg, var(--blue), var(--violet)); color:#fff; box-shadow:0 10px 34px color-mix(in srgb, var(--blue), transparent 62%); }
+  .btn.primary:hover { filter:brightness(1.08); transform:translateY(-1px); }
+  .btn.ghost { border-color:var(--line-strong); color:var(--fg); background:color-mix(in srgb, var(--surface), transparent 20%); }
+  .btn.ghost:hover { border-color:var(--accent); }
+
+  .stats { display:inline-flex; gap:clamp(22px,7vw,52px); margin-top:34px; padding:16px 28px; border:1px solid var(--line); border-radius:16px; background:color-mix(in srgb, var(--surface), transparent 35%); }
+  .stats div { display:flex; flex-direction:column; align-items:center; }
+  .stats b { font-family:var(--fonts-display); font-weight:700; font-size:clamp(22px,4vw,29px); letter-spacing:-0.02em; font-variant-numeric:tabular-nums;
+    background:linear-gradient(120deg, var(--cyan), var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .stats span { color:var(--muted); font-size:12.5px; margin-top:3px; }
+
+  section.block { padding-block:26px 10px; }
+  .sec-head { display:flex; align-items:center; gap:12px; margin-bottom:clamp(24px,4vw,44px); }
+  .sec-num { font-family:var(--fonts-mono); font-weight:600; font-size:13px; color:var(--cyan); background:color-mix(in srgb, var(--cyan), transparent 88%); border:1px solid color-mix(in srgb, var(--cyan), transparent 76%); border-radius:8px; padding:3px 9px; }
+  .sec-head h2 { font-family:var(--fonts-display); font-weight:700; font-size:23px; letter-spacing:-0.01em; margin:0; }
+  .sec-head span { color:var(--muted); font-size:14px; }
+
+  /* feature rows — enlarged previews */
+  .feats { display:flex; flex-direction:column; gap:clamp(44px,8vw,92px); }
+  .feat { display:grid; grid-template-columns:1.12fr 1fr; gap:clamp(28px,5vw,64px); align-items:center; }
+  .feat:nth-child(even) .feat-media { order:2; }
+  @media (max-width:800px) { .feat { grid-template-columns:1fr; gap:22px; } .feat:nth-child(even) .feat-media { order:0; } }
+
+  .stage { border-radius:22px; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;
+    border:1px solid color-mix(in srgb, var(--line), transparent 10%); box-shadow:0 34px 80px rgba(0,0,0,.5);
+    background:
+      radial-gradient(72% 62% at 50% 8%, color-mix(in srgb, var(--cat, var(--blue)), transparent 66%), transparent 72%),
+      linear-gradient(158deg, color-mix(in srgb, var(--cyan), transparent 84%), color-mix(in srgb, var(--violet), transparent 88%)); }
+  .stage.portrait { aspect-ratio:5/4.4; }
+  .stage.wide { aspect-ratio:16/11; }
+  .stage img.shot { max-width:74%; max-height:98%; object-fit:contain; border-radius:17px; box-shadow:0 26px 54px rgba(0,0,0,.62); }
+  .stage img.cover { width:100%; height:100%; object-fit:cover; object-position:top left; }
+  .stage a.plink { position:absolute; inset:0; }
+
+  .feat-text { display:flex; flex-direction:column; gap:14px; align-items:flex-start; min-width:0; }
+  .feat-glyph-row { display:flex; align-items:center; gap:12px; }
+  .feat .glyph { width:48px; height:48px; border-radius:13px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.4); flex:none; }
+  .feat .glyph img { width:100%; height:100%; object-fit:cover; display:block; }
+  .feat .glyph.g-genosis { background:#141022; }
+  .cat { font-family:var(--fonts-display); font-weight:600; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--cat); background:color-mix(in srgb, var(--cat), transparent 86%); border:1px solid color-mix(in srgb, var(--cat), transparent 72%); border-radius:999px; padding:4px 12px; white-space:nowrap; }
+  .c-game{--cat:var(--c-game);} .c-prod{--cat:var(--c-prod);} .c-ai{--cat:var(--c-ai);}
+  .feat h3 { font-family:var(--fonts-display); font-weight:700; font-size:clamp(23px,3vw,29px); margin:2px 0 0; letter-spacing:-0.015em; }
+  .feat h3 a { text-decoration:none; }
+  .feat h3 small { font-family:var(--fonts-body); font-weight:500; font-size:14px; color:var(--muted); margin-left:8px; letter-spacing:0; }
+  .feat .tag { color:color-mix(in srgb, var(--fg), transparent 28%); font-size:15px; font-weight:500; margin-top:-4px; }
+  .feat p { margin:4px 0 0; color:var(--muted); font-size:15px; max-width:48ch; }
+  .feat .meta { display:flex; flex-wrap:wrap; gap:7px; margin-top:4px; }
+  .chip { font-size:12px; color:var(--muted); background:color-mix(in srgb, var(--fg), transparent 93%); border:1px solid var(--line); border-radius:999px; padding:4px 11px; }
+  .feat .links { display:flex; flex-wrap:wrap; gap:9px; margin-top:10px; }
+  .lnk { font-size:13.5px; font-weight:600; text-decoration:none; color:var(--fg); border:1px solid var(--line-strong); border-radius:11px; padding:9px 15px; display:inline-flex; align-items:center; gap:6px; transition:border-color .15s, color .15s, background .15s; }
+  .lnk:hover { border-color:var(--accent); color:var(--accent); background:color-mix(in srgb, var(--accent), transparent 92%); }
+  .lnk.more { border-color:color-mix(in srgb, var(--cat), transparent 55%); color:color-mix(in srgb, var(--cat), var(--fg) 20%); }
+  .lnk.more:hover { border-color:var(--cat); color:var(--cat); background:color-mix(in srgb, var(--cat), transparent 90%); }
+  .lnk .ar { opacity:0.5; }
+
+  section.studio { padding-block:clamp(44px,7vw,80px) 48px; }
+  .studio-card { position:relative; overflow:hidden; border:1px solid var(--line); border-radius:22px; padding:clamp(26px,5vw,44px);
+    background:linear-gradient(135deg, color-mix(in srgb, var(--blue), transparent 86%), color-mix(in srgb, var(--violet), transparent 88%)); }
+  .studio-card::before { content:""; position:absolute; right:-60px; top:-60px; width:240px; height:240px; border-radius:50%; background:radial-gradient(50% 50% at 50% 50%, color-mix(in srgb, var(--cyan), transparent 70%), transparent 70%); filter:blur(10px); pointer-events:none; }
+  .studio-card p { position:relative; margin:0; color:color-mix(in srgb, var(--fg), transparent 12%); max-width:60ch; font-size:clamp(15px,2.2vw,17px); }
+
+  footer.site { border-top:1px solid var(--line); padding-block:30px 52px; margin-top:clamp(40px,7vw,72px); }
+  .foot-inner { display:flex; align-items:center; gap:14px 20px; flex-wrap:wrap; }
+  .foot-inner .brand b { font-size:16px; }
+  .foot-links { display:flex; gap:18px; margin-left:auto; flex-wrap:wrap; }
+  .foot-links a { color:var(--muted); font-size:14px; text-decoration:none; }
+  .foot-links a:hover { color:var(--accent); }
+  .copy { width:100%; color:color-mix(in srgb, var(--muted), transparent 25%); font-size:13px; margin-top:6px; }
+</style>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs>
+  <linearGradient id="gBody" x1="0.15" y1="0" x2="0.4" y2="1"><stop offset="0" class="p0"/><stop offset="0.5" class="p1"/><stop offset="1" class="p2"/></linearGradient>
+  <linearGradient id="gCore" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" class="pc0"/><stop offset="1" class="pc1"/></linearGradient>
+  <symbol id="mark" viewBox="0 0 100 100">
+    <path d="M50 10 C 68 34 78 48 78 63 C 78 80 65.9 92 50 92 C 34.1 92 22 80 22 63 C 22 48 32 34 50 10 Z" fill="url(#gBody)"/>
+    <path d="M50 44 C 57 52 60 57 60 64 C 60 72 55.5 78 50 78 C 44.5 78 40 72 40 64 C 40 58 43 54 47 48 C 48 53 48.5 52 50 44 Z" fill="url(#gCore)"/>
+  </symbol>
+</defs></svg>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="#top"><svg viewBox="0 0 100 100" aria-label="HotBlue"><use href="#mark"/></svg><b>HotBlue</b></a>
+    <nav class="nav">
+      <a href="#apps">앱</a>
+      <a href="https://github.com/hotbluehq" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+  <section class="hero">
+    <div class="glow"></div>
+    <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#mark"/></svg>
+    <div class="eyebrow">Indie Software Studio · 1인 스튜디오</div>
+    <h1 class="wordmark">HotBlue</h1>
+    <p class="lead">게임 · 생산성 · AI 앱을 만드는 소프트웨어 스튜디오</p>
+    <p class="sub">직접 매일 쓰고 싶은 앱을 하나씩 만들고, 오래 다듬습니다.</p>
+    <div class="cta">
+      <a class="btn primary" href="#apps">앱 둘러보기</a>
+      <a class="btn ghost" href="https://github.com/hotbluehq" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+    <div class="stats">
+      <div><b>3</b><span>앱</span></div>
+      <div><b>3</b><span>플랫폼</span></div>
+      <div><b>100%</b><span>직접 제작</span></div>
+    </div>
+  </section>
+
+  <section class="block" id="apps">
+    <div class="sec-head"><span class="sec-num">01</span><h2>앱</h2><span>각 앱을 눌러 자세히 보세요</span></div>
+    <div class="feats">
+
+      <!-- giruda -->
+      <article class="feat c-game">
+        <div class="feat-media"><div class="stage portrait"><img class="shot" src="assets/giruda-hero.jpg" alt="기루다 게임 플레이 화면" loading="lazy"><a class="plink" href="giruda.html" aria-label="기루다 자세히 보기"></a></div></div>
+        <div class="feat-text">
+          <div class="feat-glyph-row">
+            <div class="glyph"><img src="assets/giruda.png" alt="기루다 앱 아이콘" loading="lazy"></div>
+            <span class="cat">게임</span>
+          </div>
+          <h3><a href="giruda.html">기루다</a> <small>Giruda</small></h3>
+          <div class="tag">한국식 마이티 카드게임</div>
+          <p>AI와의 1:1 대전부터 실시간 온라인 멀티플레이까지. 튜토리얼·업적·랭킹을 갖춘 본격 트릭테이킹 게임이에요. 5개 언어 지원.</p>
+          <div class="meta"><span class="chip">iOS · Android</span><span class="chip">온라인 멀티</span><span class="chip">5개 언어</span></div>
+          <div class="links">
+            <a class="lnk more" href="giruda.html">자세히 보기 <span class="ar">→</span></a>
+            <a class="lnk" href="https://apps.apple.com/app/id6758698236" target="_blank" rel="noopener">App Store <span class="ar">↗</span></a>
+            <a class="lnk" href="https://play.google.com/store/apps/details?id=com.jakeppjk.mighty" target="_blank" rel="noopener">Google Play <span class="ar">↗</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- naeil -->
+      <article class="feat c-prod">
+        <div class="feat-media"><div class="stage wide"><img class="cover" src="assets/naeil-web-cal.png" alt="내일 공유 캘린더 화면" loading="lazy"><a class="plink" href="naeil.html" aria-label="내일 자세히 보기"></a></div></div>
+        <div class="feat-text">
+          <div class="feat-glyph-row">
+            <div class="glyph"><img src="assets/naeil.png" alt="내일 앱 아이콘" loading="lazy"></div>
+            <span class="cat">생산성</span>
+          </div>
+          <h3><a href="naeil.html">내일</a> <small>naeil</small></h3>
+          <div class="tag">공유 캘린더 + 할 일</div>
+          <p>일정과 투두를 한곳에서. 가족·팀과 캘린더를 공유하고 오늘 할 일을 깔끔하게 관리해요. 웹과 iOS·Android 앱에서 함께 씁니다.</p>
+          <div class="meta"><span class="chip">웹 · 모바일 앱</span><span class="chip">캘린더 공유</span><span class="chip">투두</span></div>
+          <div class="links">
+            <a class="lnk more" href="naeil.html">자세히 보기 <span class="ar">→</span></a>
+            <a class="lnk" href="https://naeilapp.com" target="_blank" rel="noopener">naeilapp.com <span class="ar">↗</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- genosis -->
+      <article class="feat c-ai">
+        <div class="feat-media"><div class="stage wide"><img class="cover" src="assets/genosis-lib.png" alt="genosis 에셋 라이브러리 화면" loading="lazy"><a class="plink" href="genosis.html" aria-label="genosis 자세히 보기"></a></div></div>
+        <div class="feat-text">
+          <div class="feat-glyph-row">
+            <div class="glyph g-genosis"><img src="assets/genosis.png" alt="genosis 앱 아이콘" loading="lazy"></div>
+            <span class="cat">AI</span>
+          </div>
+          <h3><a href="genosis.html">genosis</a></h3>
+          <div class="tag">AI 게임 에셋 생성</div>
+          <p>캐릭터·배경·스프라이트시트·BGM·효과음을 프롬프트 한 줄로 만들어요. 게임 개발자를 위한 AI 에셋 스튜디오. MCP로 작업 도구에 바로 연결됩니다.</p>
+          <div class="meta"><span class="chip">웹</span><span class="chip">이미지·오디오</span><span class="chip">MCP</span></div>
+          <div class="links">
+            <a class="lnk more" href="genosis.html">자세히 보기 <span class="ar">→</span></a>
+            <a class="lnk" href="https://genosis.cloud" target="_blank" rel="noopener">genosis.cloud <span class="ar">↗</span></a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="studio" id="studio">
+    <div class="sec-head"><span class="sec-num">02</span><h2>스튜디오</h2><span>HotBlue 소개</span></div>
+    <div class="studio-card">
+      <p>HotBlue는 1인으로 시작한 소프트웨어 스튜디오입니다. 유행을 좇기보다, 직접 매일 쓰고 싶은 앱을 꾸준히 만들고 다듬습니다. 게임·생산성·AI — 분야는 달라도 "오래 쓸 만한가"라는 기준은 같아요.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap foot-inner">
+    <a class="brand" href="#top"><svg viewBox="0 0 100 100" width="22" height="26" aria-hidden="true"><use href="#mark"/></svg><b>HotBlue</b></a>
+    <div class="foot-links">
+      <a href="#apps">앱</a>
+      <a href="https://github.com/hotbluehq" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://hotblue.kr" target="_blank" rel="noopener">hotblue.kr</a>
+    </div>
+    <div class="copy">© 2026 HotBlue</div>
+  </div>
+</footer>
+</body>
+</html>
