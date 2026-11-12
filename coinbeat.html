@@ -8,11 +8,11 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="코인 비트 — HotBlue">
-<meta property="og:description" content="네온 오락실 감성 리듬게임. 악기별로 만든 채보, 4단계 난이도, 랭크 도전.">
+<meta property="og:description" content="네온 오락실 리듬게임. 노트마다 실제 악기를 치는 채보, 4단계 난이도, SSS 랭크 도전.">
 <meta property="og:url" content="https://hotblue.kr/coinbeat.html">
-<meta property="og:image" content="https://hotblue.kr/assets/og.png">
+<meta property="og:image" content="https://hotblue.kr/assets/og-coinbeat.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="description" content="코인 비트 — 네온 오락실 감성 리듬게임. 악기별로 만든 채보, 4단계 난이도, 랭크 도전.">
+<meta name="description" content="코인 비트 — 네온 오락실 리듬게임. 노트마다 실제 악기를 치는 채보, 4단계 난이도, SSS 랭크 도전.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap">
@@ -23,7 +23,7 @@
     --c-game:#6ad6ff; --c-prod:#7aa7ff; --c-ai:#b49bf0; --cat:var(--c-game);
     --fonts-display:"Outfit",system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif; --fonts-body:"Hanken Grotesk",system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif; --fonts-mono:ui-monospace,Menlo,monospace; }
   * { box-sizing:border-box; } html,body { margin:0; }
-  body { background:var(--bg); color:var(--fg); font-family:var(--fonts-body); line-height:1.6; -webkit-font-smoothing:antialiased; position:relative; overflow-x:hidden; }
+  body { background:var(--bg); color:var(--fg); font-family:var(--fonts-body); line-height:1.6; -webkit-font-smoothing:antialiased; word-break:keep-all; overflow-wrap:break-word; position:relative; overflow-x:hidden; }
   body::before { content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
     background:
       radial-gradient(40% 26% at 14% 0%, color-mix(in srgb, var(--cat), transparent 80%), transparent 62%),
@@ -51,8 +51,8 @@
   .app-hero { display:grid; grid-template-columns:auto 1fr; gap:clamp(20px,4vw,36px); align-items:center; padding-block:clamp(22px,4vw,34px) clamp(30px,5vw,50px); }
   .ah-icon { position:relative; flex:none; }
   .ah-icon::after { content:""; position:absolute; inset:-30%; z-index:-1; background:radial-gradient(50% 50% at 50% 50%, color-mix(in srgb, var(--cat), transparent 55%), transparent 70%); filter:blur(26px); }
+  @media (max-width:600px){ .app-hero { grid-template-columns:1fr; align-items:start; gap:18px; } }
   .ah-icon img { width:clamp(88px,14vw,122px); height:auto; border-radius:27px; box-shadow:0 18px 44px rgba(0,0,0,.5); display:block; }
-  .ah-icon.g-genosis img { background:#141022; }
   .cat { font-family:var(--fonts-display); font-weight:600; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--cat); background:color-mix(in srgb, var(--cat), transparent 86%); border:1px solid color-mix(in srgb, var(--cat), transparent 72%); border-radius:999px; padding:4px 12px; white-space:nowrap; }
   .ah-text h1 { font-family:var(--fonts-display); font-weight:800; font-size:clamp(34px,6vw,56px); letter-spacing:-0.03em; line-height:1.02; margin:12px 0 0; }
   .ah-text h1 small { font-family:var(--fonts-body); font-weight:500; font-size:clamp(15px,2vw,18px); color:var(--muted); margin-left:10px; letter-spacing:0; }
@@ -126,10 +126,11 @@
       <span class="cat">게임 · 리듬</span>
       <h1>코인 비트 <small>COIN BEAT</small></h1>
       <p class="ah-tag">네온 오락실 리듬게임</p>
-      <p class="ah-desc">동전 넣고 한 곡 더. AI로 만든 가사곡에 맞춰 내려오는 노트를 치는 오락실 감성 리듬게임이에요. 곡을 악기별로 나눠 채보를 만들어서, 어려워질수록 더 많은 악기를 직접 연주하는 손맛이 납니다.</p>
+      <p class="ah-desc">동전 넣고 한 곡 더. 곡을 악기별로 나눠 채보를 만들어서, 노트 하나하나가 보컬·베이스·드럼 같은 실제 악기예요. 쉬움에선 보컬과 킥을, 어려워질수록 더 많은 악기를 직접 연주하는 손맛이 납니다. 가사가 흐르는 오리지널 곡으로 즐기는 네온 오락실 리듬게임.</p>
       <div class="meta"><span class="chip">iOS · Android</span><span class="chip">무료 9곡</span><span class="chip">4 · 6레인</span><span class="chip">난이도 4단계</span><span class="chip">출시 준비 중</span></div>
       <div class="links">
         <span class="lnk soon">App Store · Google Play 곧 출시</span>
+        <a class="lnk" href="coinbeat/support/">고객 지원 <span class="ar">→</span></a>
       </div>
     </div>
   </section>
@@ -185,7 +186,7 @@
     <div class="foot-links">
       <a href="index.html#apps">앱</a>
       <a href="https://github.com/hotbluehq" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://hotblue.kr" target="_blank" rel="noopener">hotblue.kr</a>
+      <a href="mailto:jake.ppjk@gmail.com">문의 jake.ppjk@gmail.com</a>
     </div>
     <div class="copy">© 2026 HotBlue</div>
   </div>

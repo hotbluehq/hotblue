@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>HotBlue</title>
-<meta name="description" content="HotBlue — 게임·생산성·AI 앱을 만드는 1인 소프트웨어 스튜디오">
+<meta name="description" content="HotBlue — 게임·생산성 앱을 만드는 1인 소프트웨어 스튜디오">
 <meta name="theme-color" content="#06080f">
 <link rel="icon" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="HotBlue">
-<meta property="og:description" content="게임·생산성·AI 앱을 만드는 1인 소프트웨어 스튜디오">
+<meta property="og:description" content="게임·생산성 앱을 만드는 1인 소프트웨어 스튜디오">
 <meta property="og:url" content="https://hotblue.kr">
 <meta property="og:image" content="https://hotblue.kr/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -32,7 +32,7 @@
   html, body { margin:0; }
   body {
     background:var(--bg); color:var(--fg); font-family:var(--fonts-body); line-height:1.6;
-    -webkit-font-smoothing:antialiased; position:relative; overflow-x:hidden;
+    -webkit-font-smoothing:antialiased; word-break:keep-all; overflow-wrap:break-word; position:relative; overflow-x:hidden;
   }
   body::before { content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
     background:
@@ -101,13 +101,14 @@
   .stage.wide { aspect-ratio:16/11; }
   .stage img.shot { max-width:74%; max-height:98%; object-fit:contain; border-radius:17px; box-shadow:0 26px 54px rgba(0,0,0,.62); }
   .stage img.cover { width:100%; height:100%; object-fit:cover; object-position:top left; }
+  .only-m { display:none !important; }
+  @media (max-width:800px){ .only-d { display:none !important; } .only-m { display:flex !important; } }
   .stage a.plink { position:absolute; inset:0; }
 
   .feat-text { display:flex; flex-direction:column; gap:14px; align-items:flex-start; min-width:0; }
   .feat-glyph-row { display:flex; align-items:center; gap:12px; }
   .feat .glyph { width:48px; height:48px; border-radius:13px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.4); flex:none; }
   .feat .glyph img { width:100%; height:100%; object-fit:cover; display:block; }
-  .feat .glyph.g-genosis { background:#141022; }
   .cat { font-family:var(--fonts-display); font-weight:600; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--cat); background:color-mix(in srgb, var(--cat), transparent 86%); border:1px solid color-mix(in srgb, var(--cat), transparent 72%); border-radius:999px; padding:4px 12px; white-space:nowrap; }
   .c-game{--cat:var(--c-game);} .c-prod{--cat:var(--c-prod);} .c-ai{--cat:var(--c-ai);}
   .feat h3 { font-family:var(--fonts-display); font-weight:700; font-size:clamp(23px,3vw,29px); margin:2px 0 0; letter-spacing:-0.015em; }
@@ -164,14 +165,14 @@
     <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#mark"/></svg>
     <div class="eyebrow">Indie Software Studio · 1인 스튜디오</div>
     <h1 class="wordmark">HotBlue</h1>
-    <p class="lead">게임 · 생산성 · AI 앱을 만드는 소프트웨어 스튜디오</p>
+    <p class="lead">게임 · 생산성 앱을 만드는 소프트웨어 스튜디오</p>
     <p class="sub">직접 매일 쓰고 싶은 앱을 하나씩 만들고, 오래 다듬습니다.</p>
     <div class="cta">
       <a class="btn primary" href="#apps">앱 둘러보기</a>
-      <a class="btn ghost" href="https://github.com/hotbluehq" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn ghost" href="mailto:jake.ppjk@gmail.com">문의하기</a>
     </div>
     <div class="stats">
-      <div><b>5</b><span>앱</span></div>
+      <div><b>4</b><span>앱</span></div>
       <div><b>3</b><span>플랫폼</span></div>
       <div><b>100%</b><span>직접 제작</span></div>
     </div>
@@ -229,7 +230,7 @@
           </div>
           <h3><a href="coinbeat.html">코인 비트</a> <small>COIN BEAT</small></h3>
           <div class="tag">네온 오락실 리듬게임</div>
-          <p>AI로 만든 가사곡에 맞춰 치는 오락실 감성 리듬게임. 곡을 악기별로 나눠 만든 채보라, 어려워질수록 더 많은 악기를 직접 연주하는 손맛이 나요.</p>
+          <p>보컬·베이스·드럼, 노트 하나하나가 곡 속 악기예요. 어려워질수록 더 많은 악기를 직접 연주하는 오락실 감성 리듬게임. 가사가 흐르는 오리지널 곡으로 SSS에 도전해 보세요.</p>
           <div class="meta"><span class="chip">iOS · Android</span><span class="chip">무료 9곡</span><span class="chip">출시 준비 중</span></div>
           <div class="links">
             <a class="lnk more" href="coinbeat.html">자세히 보기 <span class="ar">→</span></a>
@@ -239,7 +240,7 @@
 
       <!-- naeil -->
       <article class="feat c-prod">
-        <div class="feat-media"><div class="stage wide"><img class="cover" src="assets/naeil-web-cal.png" alt="내일 공유 캘린더 화면" loading="lazy"><a class="plink" href="naeil.html" aria-label="내일 자세히 보기"></a></div></div>
+        <div class="feat-media"><div class="stage wide only-d"><img class="cover" src="assets/naeil-web-cal.png" alt="내일 공유 캘린더 화면" loading="lazy"><a class="plink" href="naeil.html" aria-label="내일 자세히 보기"></a></div><div class="stage portrait only-m"><img class="shot" src="assets/naeil-m-cal.png" alt="내일 모바일 캘린더 화면" loading="lazy"><a class="plink" href="naeil.html" aria-label="내일 자세히 보기"></a></div></div>
         <div class="feat-text">
           <div class="feat-glyph-row">
             <div class="glyph"><img src="assets/naeil.png" alt="내일 앱 아이콘" loading="lazy"></div>
@@ -256,24 +257,6 @@
         </div>
       </article>
 
-      <!-- genosis -->
-      <article class="feat c-ai">
-        <div class="feat-media"><div class="stage wide"><img class="cover" src="assets/genosis-lib.png" alt="genosis 에셋 라이브러리 화면" loading="lazy"><a class="plink" href="genosis.html" aria-label="genosis 자세히 보기"></a></div></div>
-        <div class="feat-text">
-          <div class="feat-glyph-row">
-            <div class="glyph g-genosis"><img src="assets/genosis.png" alt="genosis 앱 아이콘" loading="lazy"></div>
-            <span class="cat">AI</span>
-          </div>
-          <h3><a href="genosis.html">genosis</a></h3>
-          <div class="tag">AI 게임 에셋 생성</div>
-          <p>캐릭터·배경·스프라이트시트·BGM·효과음을 프롬프트 한 줄로 만들어요. 게임 개발자를 위한 AI 에셋 스튜디오. MCP로 작업 도구에 바로 연결됩니다.</p>
-          <div class="meta"><span class="chip">웹</span><span class="chip">이미지·오디오</span><span class="chip">MCP</span></div>
-          <div class="links">
-            <a class="lnk more" href="genosis.html">자세히 보기 <span class="ar">→</span></a>
-            <a class="lnk" href="https://genosis.cloud" target="_blank" rel="noopener">genosis.cloud <span class="ar">↗</span></a>
-          </div>
-        </div>
-      </article>
 
     </div>
   </section>
@@ -281,7 +264,7 @@
   <section class="studio" id="studio">
     <div class="sec-head"><span class="sec-num">02</span><h2>스튜디오</h2><span>HotBlue 소개</span></div>
     <div class="studio-card">
-      <p>HotBlue는 1인으로 시작한 소프트웨어 스튜디오입니다. 유행을 좇기보다, 직접 매일 쓰고 싶은 앱을 꾸준히 만들고 다듬습니다. 게임·생산성·AI — 분야는 달라도 "오래 쓸 만한가"라는 기준은 같아요.</p>
+      <p>HotBlue는 1인으로 시작한 소프트웨어 스튜디오입니다. 유행을 좇기보다, 직접 매일 쓰고 싶은 앱을 꾸준히 만들고 다듬습니다. 게임과 생산성 — 분야는 달라도 "오래 쓸 만한가"라는 기준은 같아요.</p>
     </div>
   </section>
 </main>
@@ -292,7 +275,7 @@
     <div class="foot-links">
       <a href="#apps">앱</a>
       <a href="https://github.com/hotbluehq" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://hotblue.kr" target="_blank" rel="noopener">hotblue.kr</a>
+      <a href="mailto:jake.ppjk@gmail.com">문의 jake.ppjk@gmail.com</a>
     </div>
     <div class="copy">© 2026 HotBlue</div>
   </div>
